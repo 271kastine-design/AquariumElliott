@@ -1,7 +1,3 @@
-package aquarium;
-
-import aquarium.creatures.SeaCreature;
-
 import java.util.Arrays;
 
 public class Aquarium {

@@ -1,5 +1,3 @@
-package aquarium.creatures;
-
 public class Fish extends SeaCreature {
 
     private String symbol;

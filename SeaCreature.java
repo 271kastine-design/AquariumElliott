@@ -1,5 +1,3 @@
-package aquarium.creatures;
-
 public abstract class SeaCreature {
 
     protected String name;

@@ -1,8 +1,3 @@
-package aquarium;
-
-import aquarium.creatures.Fish;
-import aquarium.creatures.SeaCreature;
-
 public class ReferenceLab {
 
     public static void main(String[] args) {
