@@ -17,7 +17,8 @@ public class ReferenceLab {
         System.out.println("Experiment A - Aliasing");
         System.out.println("nemo position: " + nemo.getPosition());
         System.out.println("copy position: " + copy.getPosition());
-
+        //This will return 25 for both nemo and copy because they are referencing the same object in memory. 
+        // When you modify the position of nemo, it also affects copy since they are both pointing to the same instance of the Fish class.
 
         // ==================================================
         // EXPERIMENT B: TWO DIFFERENT OBJECTS
@@ -32,7 +33,9 @@ public class ReferenceLab {
         System.out.println();
         System.out.println("Experiment B - Separate Objects");
         System.out.println("fish1 == fish2: " + (fish1 == fish2));
-
+        //This will turn false because while these two objects are the same type, they are not the same object in memory. 
+        // They are two different instances of the Fish class, so they will not be equal when compared using the '==' operator.
+        //'==' compares the memory addresses of the two objects.
 
         // ==================================================
         // EXPERIMENT C: ARRAY REFERENCES
@@ -45,7 +48,7 @@ public class ReferenceLab {
 
         // PREDICT BEFORE RUNNING:
         // What happens to tank[0] if selected is modified?
-
+        //Tank[0] will also be modified because selected is a reference to the same object in memory.
         selected.setPosition(35);
 
         System.out.println();
