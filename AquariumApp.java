@@ -9,8 +9,10 @@ public class AquariumApp {
         // Two starter creatures.
         tank[0] = new Fish("Nemo", 4, 3, 1, "><>");
         tank[1] = new Fish("Dory", 30, 2, -1, "><((('>");
-
-        // =====================================================
+        tank[2] = new Shark("Jaws", 12, 4, 1, ">>()()[}'<");
+        tank[3] = new Turtle("Leonardo", 20, 1, -1, "O==[]::::>");
+        // ================
+        // =====================================
         // STUDENT TODO
         // =====================================================
         // 1. Create at least TWO additional SeaCreature subclasses.
