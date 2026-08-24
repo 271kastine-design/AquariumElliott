@@ -1,19 +1,20 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class AquariumApp {
 
     public static void main(String[] args) {
 
-        SeaCreature[] tank = new SeaCreature[8];
+        ArrayList<SeaCreature> tank = new ArrayList<>();
 
         // Two starter creatures.
-        tank[0] = new Fish("Nemo", 4, 3, 1, "><>");
-        tank[1] = new Fish("Dory", 30, 2, -1, "><((('>");
-        tank[2] = new Shark("Jaws", 12, 4, 1, ">>()()[}'<");
-        tank[3] = new Turtle("Leonardo", 20, 1, -1, "O==[]::::>");
+        tank.add(new Fish("Nemo", 4, 3, 1, "><>"));
+        tank.add(new Fish("Dory", 30, 2, -1, "><((('>"));
+        tank.add(new Shark("Jaws", 12, 4, 1, ">>()()[}'<"));
+        tank.add(new Turtle("Leonardo", 20, 1, -1, "O==[]::::>"));
         // ================
         // =====================================
-        // STUDENT TODO
+        // STUDENT Task
         // =====================================================
         // 1. Create at least TWO additional SeaCreature subclasses.
         // 2. Add objects from those subclasses to this array.
@@ -56,8 +57,12 @@ public class AquariumApp {
                     System.out.println("Aquarium closed. Goodbye!");
                     break;
 
+                case "5":
+                    aquarium.addCreature();
+                    break;
+
                 default:
-                    System.out.println("Please choose 1, 2, 3, or 4.");
+                    System.out.println("Please choose 1, 2, 3, 4, or 5.");
             }
         }
 
@@ -70,5 +75,6 @@ public class AquariumApp {
         System.out.println("2. Advance One Turn");
         System.out.println("3. View Creature Details");
         System.out.println("4. Quit");
+        System.out.println("5. Add Creature");
     }
 }

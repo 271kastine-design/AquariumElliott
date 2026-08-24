@@ -1,13 +1,14 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Aquarium {
 
     public static final int TANK_WIDTH = 48;
 
-    private SeaCreature[] creatures;
+    private ArrayList<SeaCreature> creatures;
     private int turnNumber;
 
-    public Aquarium(SeaCreature[] creatures) {
+    public Aquarium(ArrayList<SeaCreature> creatures) {
         this.creatures = creatures;
         this.turnNumber = 0;
     }
@@ -72,13 +73,25 @@ public class Aquarium {
             System.out.println("No creatures are currently in the aquarium.");
         }
     }
-
-    public SeaCreature[] getCreatures() {
+    
+    public ArrayList<SeaCreature> getCreatures() {
         return creatures;
     }
 
     public int getTurnNumber() {
         return turnNumber;
+    }
+    public void addCreature() {
+        int i = (int)(Math.random()*3 + 1);
+        if(i == 1){
+            creatures.add(new Fish("Fishy", (int)(Math.random() * 30), 2, Math.random() < 0.5 ? -1 : 1, "><>"));
+        } else if(i == 2) {
+            creatures.add(new Shark("Sharky", (int)(Math.random() * 30), 4, Math.random() < 0.5 ? -1 : 1, ">>()()[}'<"));
+        } else {
+            creatures.add(new Turtle("Turtley", (int)(Math.random() * 30), 1, (Math.random() < 0.5) ? -1 : 1, "O==[]::::>"));
+        }
+        System.out.println();
+        System.out.println("Adding a new creature to the aquarium...");         
     }
 
     private String buildLane(SeaCreature creature) {

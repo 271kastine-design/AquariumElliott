@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 public class ReferenceLab {
 
     public static void main(String[] args) {
@@ -41,19 +42,19 @@ public class ReferenceLab {
         // EXPERIMENT C: ARRAY REFERENCES
         // ==================================================
 
-        SeaCreature[] tank = new SeaCreature[5];
-        tank[0] = new Fish("Bubbles", 8, 1, 1, "><((('>");
+        ArrayList<SeaCreature> tank = new ArrayList<>();
+        tank.add(new Fish("Bubbles", 8, 1, 1, "><((('>"));
 
-        SeaCreature selected = tank[0];
+        SeaCreature selected = tank.get(0);
 
         // PREDICT BEFORE RUNNING:
-        // What happens to tank[0] if selected is modified?
-        //Tank[0] will also be modified because selected is a reference to the same object in memory.
+        // What happens to tank.get(0) if selected is modified?
+        //tank.get(0) will also be modified because selected is a reference to the same object in memory.
         selected.setPosition(35);
 
         System.out.println();
         System.out.println("Experiment C - Array References");
         System.out.println("selected position: " + selected.getPosition());
-        System.out.println("tank[0] position: " + tank[0].getPosition());
+        System.out.println("tank.get(0) position: " + tank.get(0).getPosition());
     }
 }
