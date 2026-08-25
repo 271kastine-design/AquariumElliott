@@ -1,0 +1,18 @@
+1. An example of inheritance within my project appears in the form 
+of how each animal (shark, turtle, etc.) inherits their name, 
+starting position, etc. from the super constructor that was from 
+the class SeaCreature. 
+2. One example of method overriding came in my turtle class. In which 
+the turtle overrode the SeaCreature class allowing it to move differently 
+than the other sea creatures. 
+3. Because a SeaCreature array can hold subclasses due to 
+polymorphism, which allows the parent class to store and utilize its 
+subclasses.
+4. This is exemplified with fish creating an object and then creating 
+another object being a copy and setting it to the fish object. Therefore,
+the two variables now refer to the same object in memory.
+5. Git commit -m "type whatever" is the best for showing meaningful 
+progress due to it allowing you to type in what you've accomplished
+during a prior coding session. Which can help show your progress.
+6. I would try to implemet paralell processing to update independent objects 
+and groups individually. 
