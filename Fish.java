@@ -2,7 +2,7 @@ public class Fish extends SeaCreature {
 
     private String symbol;
 
-    public Fish(String name, int position, int speed, int direction, String symbol) {
+    public Fish(String name, int position, int speed, int direction, String symbol) throws InvalidCreatureException {
         super(name, position, speed, direction);
         this.symbol = symbol;
     }

@@ -16,7 +16,7 @@ public class Aquarium {
     public void display() {
         System.out.println();
         System.out.println("TURN " + turnNumber);
-        System.out.println("+" + "-".repeat(TANK_WIDTH) + "+");
+        System.out.println("+" + repeat("-", TANK_WIDTH) + "+");
 
         boolean foundCreature = false;
 
@@ -31,7 +31,7 @@ public class Aquarium {
             System.out.println("|" + center("The aquarium is empty.", TANK_WIDTH) + "|");
         }
 
-        System.out.println("+" + "-".repeat(TANK_WIDTH) + "+");
+        System.out.println("+" + repeat("-", TANK_WIDTH) + "+");
     }
 
     public void advanceTurn() {
@@ -83,15 +83,19 @@ public class Aquarium {
     }
     public void addCreature() {
         int i = (int)(Math.random()*3 + 1);
-        if(i == 1){
-            creatures.add(new Fish("Fishy", (int)(Math.random() * 30), 2, Math.random() < 0.5 ? -1 : 1, "><>"));
-        } else if(i == 2) {
-            creatures.add(new Shark("Sharky", (int)(Math.random() * 30), 4, Math.random() < 0.5 ? -1 : 1, ">>()()[}'<"));
-        } else {
-            creatures.add(new Turtle("Turtley", (int)(Math.random() * 30), 1, (Math.random() < 0.5) ? -1 : 1, "O==[]::::>"));
+        try {
+            if(i == 1){
+                creatures.add(new Fish("Fishy", (int)(Math.random() * 30), 2, Math.random() < 0.5 ? -1 : 1, "><>"));
+            } else if(i == 2) {
+                creatures.add(new Shark("Sharky", (int)(Math.random() * 30), 4, Math.random() < 0.5 ? -1 : 1, ">>()[}\'<"));
+            } else {
+                creatures.add(new Turtle("Turtley", (int)(Math.random() * 30), 1, (Math.random() < 0.5) ? -1 : 1, "O==[]::::>"));
+            }
+            System.out.println();
+            System.out.println("Adding a new creature to the aquarium...");
+        } catch (InvalidCreatureException e) {
+            System.err.println("Error adding creature: " + e.getMessage());
         }
-        System.out.println();
-        System.out.println("Adding a new creature to the aquarium...");         
     }
 
     private String buildLane(SeaCreature creature) {
@@ -120,6 +124,14 @@ public class Aquarium {
         int leftPadding = totalPadding / 2;
         int rightPadding = totalPadding - leftPadding;
 
-        return " ".repeat(leftPadding) + text + " ".repeat(rightPadding);
+        return repeat(" ", leftPadding) + text + repeat(" ", rightPadding);
+    }
+
+    private String repeat(String str, int count) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < count; i++) {
+            sb.append(str);
+        }
+        return sb.toString();
     }
 }

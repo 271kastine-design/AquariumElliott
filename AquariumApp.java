@@ -8,10 +8,14 @@ public class AquariumApp {
         ArrayList<SeaCreature> tank = new ArrayList<>();
 
         // Two starter creatures.
-        tank.add(new Fish("Nemo", 4, 3, 1, "><>"));
-        tank.add(new Fish("Dory", 30, 2, -1, "><((('>"));
-        tank.add(new Shark("Jaws", 12, 4, 1, ">>()()[}'<"));
-        tank.add(new Turtle("Leonardo", 20, 1, -1, "O==[]::::>"));
+        try {
+            tank.add(new Fish("Nemo", 4, 3, 1, "><>"));
+            tank.add(new Fish("Dory", 30, 2, -1, "><((('>)"));
+            tank.add(new Shark("Jaws", 12, 4, 1, ">>()[}\'<"));
+            tank.add(new Turtle("Leonardo", 20, 1, -1, "O==[]::::>"));
+        } catch (InvalidCreatureException e) {
+            System.err.println("Error creating creatures: " + e.getMessage());
+        }
         // ================
         // =====================================
         // STUDENT Task

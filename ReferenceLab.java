@@ -7,7 +7,12 @@ public class ReferenceLab {
         // EXPERIMENT A: ALIASING
         // ==================================================
 
-        SeaCreature nemo = new Fish("Nemo", 5, 3, 1, "><>");
+        SeaCreature nemo = null;
+        try {
+            nemo = new Fish("Nemo", 5, 3, 1, "><>");
+        } catch (InvalidCreatureException e) {
+            System.err.println("Error creating nemo: " + e.getMessage());
+        }
         SeaCreature copy = nemo;
 
         // PREDICT BEFORE RUNNING:
@@ -25,8 +30,14 @@ public class ReferenceLab {
         // EXPERIMENT B: TWO DIFFERENT OBJECTS
         // ==================================================
 
-        SeaCreature fish1 = new Fish("Fish", 10, 2, 1, "><>");
-        SeaCreature fish2 = new Fish("Fish", 10, 2, 1, "><>");
+        SeaCreature fish1 = null;
+        SeaCreature fish2 = null;
+        try {
+            fish1 = new Fish("Fish", 10, 2, 1, "><>");
+            fish2 = new Fish("Fish", 10, 2, 1, "><>");
+        } catch (InvalidCreatureException e) {
+            System.err.println("Error creating fish: " + e.getMessage());
+        }
 
         // PREDICT BEFORE RUNNING:
         // Will fish1 == fish2 be true or false?
@@ -43,7 +54,11 @@ public class ReferenceLab {
         // ==================================================
 
         ArrayList<SeaCreature> tank = new ArrayList<>();
-        tank.add(new Fish("Bubbles", 8, 1, 1, "><((('>"));
+        try {
+            tank.add(new Fish("Bubbles", 8, 1, 1, "><((('>)"));
+        } catch (InvalidCreatureException e) {
+            System.err.println("Error creating bubbles: " + e.getMessage());
+        }
 
         SeaCreature selected = tank.get(0);
 

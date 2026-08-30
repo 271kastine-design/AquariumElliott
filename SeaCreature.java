@@ -5,7 +5,16 @@ public abstract class SeaCreature {
     protected int speed;
     protected int direction;
 
-    public SeaCreature(String name, int position, int speed, int direction) {
+    public SeaCreature(String name, int position, int speed, int direction) throws InvalidCreatureException {
+        if (position < 0 || position >= 48) {
+            throw new InvalidCreatureException("Position is out of bounds.");
+        }
+        if (speed < 0) {
+            throw new InvalidCreatureException("Speed cannot be negative.");
+        }
+        if(name == null || name.isEmpty()) {
+            throw new InvalidCreatureException("Name cannot be null or empty.");
+        }
         this.name = name;
         this.position = position;
         this.speed = speed;

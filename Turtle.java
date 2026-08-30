@@ -2,7 +2,7 @@ public class Turtle extends SeaCreature{
     private String symbol;
     private int turnNumber;
     
-    public Turtle(String name, int position, int speed, int direction, String symbol) {
+    public Turtle(String name, int position, int speed, int direction, String symbol) throws InvalidCreatureException {
         super(name, position, speed, direction);
         this.symbol = symbol;
     }
