@@ -13,6 +13,7 @@ public class AquariumApp {
             tank.add(new Fish("Dory", 30, 2, -1, "><((('>)"));
             tank.add(new Shark("Jaws", 12, 4, 1, ">>()[}\'<"));
             tank.add(new Turtle("Leonardo", 20, 1, -1, "O==[]::::>"));
+            tank.add(new Fish("Broken Fish", 100, -40, 3, "><>")); // This should throw an exception and not be added to the tank.
         } catch (InvalidCreatureException e) {
             System.err.println("Error creating creatures: " + e.getMessage());
         }
