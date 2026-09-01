@@ -8,11 +8,15 @@ public class ReferenceLab {
         // ==================================================
 
         SeaCreature nemo = null;
+        // Try-catch is needed because Fish constructor validates parameters and can throw
+        // InvalidCreatureException if the creature data is invalid
         try {
             nemo = new Fish("Nemo", 5, 3, 1, "><>");
         } catch (InvalidCreatureException e) {
             System.err.println("Error creating nemo: " + e.getMessage());
         }
+        // copy is assigned the same reference as nemo - both variables point to the same
+        // Fish object in memory (not a separate copy of the data)
         SeaCreature copy = nemo;
 
         // PREDICT BEFORE RUNNING:
@@ -23,8 +27,8 @@ public class ReferenceLab {
         System.out.println("Experiment A - Aliasing");
         System.out.println("nemo position: " + nemo.getPosition());
         System.out.println("copy position: " + copy.getPosition());
-        //This will return 25 for both nemo and copy because they are referencing the same object in memory. 
-        // When you modify the position of nemo, it also affects copy since they are both pointing to the same instance of the Fish class.
+        // Both show 25 because nemo and copy are aliases (references to the same Fish object).
+        // Modifying one affects the other since they share the same memory location.
 
         // ==================================================
         // EXPERIMENT B: TWO DIFFERENT OBJECTS
@@ -32,6 +36,8 @@ public class ReferenceLab {
 
         SeaCreature fish1 = null;
         SeaCreature fish2 = null;
+        // Even though both Fish objects have identical parameters, they are separate
+        // instances created with distinct 'new' calls in different memory locations
         try {
             fish1 = new Fish("Fish", 10, 2, 1, "><>");
             fish2 = new Fish("Fish", 10, 2, 1, "><>");
@@ -45,14 +51,15 @@ public class ReferenceLab {
         System.out.println();
         System.out.println("Experiment B - Separate Objects");
         System.out.println("fish1 == fish2: " + (fish1 == fish2));
-        //This will turn false because while these two objects are the same type, they are not the same object in memory. 
-        // They are two different instances of the Fish class, so they will not be equal when compared using the '==' operator.
-        //'==' compares the memory addresses of the two objects.
+        // Returns false because '==' compares object references (memory addresses), not content.
+        // fish1 and fish2 are different objects in memory, even though their data is identical.
 
         // ==================================================
         // EXPERIMENT C: ARRAY REFERENCES
         // ==================================================
 
+        // ArrayList is declared with type SeaCreature (parent class) to allow storing
+        // any SeaCreature subtype (Fish, Shark, Turtle, etc.) for polymorphic flexibility
         ArrayList<SeaCreature> tank = new ArrayList<>();
         try {
             tank.add(new Fish("Bubbles", 8, 1, 1, "><((('>)"));
@@ -60,16 +67,19 @@ public class ReferenceLab {
             System.err.println("Error creating bubbles: " + e.getMessage());
         }
 
+        // selected holds a reference to the Fish object stored in tank (at index 0).
+        // This reference can be used to modify the original object in the ArrayList.
         SeaCreature selected = tank.get(0);
 
         // PREDICT BEFORE RUNNING:
         // What happens to tank.get(0) if selected is modified?
-        //tank.get(0) will also be modified because selected is a reference to the same object in memory.
+        // Modifying selected will also update tank.get(0) because they reference the same Fish object.
         selected.setPosition(35);
 
         System.out.println();
         System.out.println("Experiment C - Array References");
         System.out.println("selected position: " + selected.getPosition());
         System.out.println("tank.get(0) position: " + tank.get(0).getPosition());
+        // Both print 35 because selected is an alias to the Fish object stored in the ArrayList.
     }
 }
