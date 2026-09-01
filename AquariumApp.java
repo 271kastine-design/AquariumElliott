@@ -7,13 +7,28 @@ public class AquariumApp {
 
         ArrayList<SeaCreature> tank = new ArrayList<>();
 
-        // Two starter creatures.
+        // Add valid starter creatures
         try {
-            tank.add(new Fish("Nemo", 4, 3, 1, "><>"));
+            tank.add(new Fish("Nemo", 4, 3, 1, ">>(^>"));
             tank.add(new Fish("Dory", 30, 2, -1, "><((('>)"));
             tank.add(new Shark("Jaws", 12, 4, 1, ">>()[}\'<"));
             tank.add(new Turtle("Leonardo", 20, 1, -1, "O==[]::::>"));
-            tank.add(new Fish("Broken Fish", 100, -40, 3, "><>")); // This should throw an exception and not be added to the tank.
+            // Intentionally invalid: negative speed will fail validation
+            tank.add(new Fish("Broken Fish", 100, -40, 3, ">>(^>"));
+        } catch (InvalidCreatureException e) {
+            System.err.println("Error creating creatures: " + e.getMessage());
+        }
+        // Additional invalid test cases in separate try-catch blocks to allow program to continue
+        // even if some creatures fail validation
+        try{
+            // Intentionally invalid: negative speed will fail validation
+            tank.add(new Turtle("Evil Turtle", 30, -64, 1, "O==[]::::>"));
+        } catch (InvalidCreatureException e) {
+            System.err.println("Error creating creatures: " + e.getMessage());
+        }
+        try{
+            // Intentionally invalid: empty name will fail validation
+            tank.add(new Shark("", 21, 8, 1, ">>>[}\'<"));
         } catch (InvalidCreatureException e) {
             System.err.println("Error creating creatures: " + e.getMessage());
         }
@@ -30,6 +45,7 @@ public class AquariumApp {
         // tank[3] = new Turtle(...);
 
         Aquarium aquarium = new Aquarium(tank);
+        // Scanner reads user input from the keyboard
         Scanner input = new Scanner(System.in);
 
         boolean running = true;
@@ -38,9 +54,11 @@ public class AquariumApp {
         System.out.println("        JAVA TERMINAL AQUARIUM");
         System.out.println("====================================");
 
+        // Main event loop: continues until user chooses to quit
         while (running) {
             printMenu();
             System.out.print("Choose an option: ");
+            // trim() removes leading/trailing whitespace from user input
             String choice = input.nextLine().trim();
 
             switch (choice) {
@@ -49,6 +67,7 @@ public class AquariumApp {
                     break;
 
                 case "2":
+                    // Advance turn first, then display so user sees the updated positions
                     aquarium.advanceTurn();
                     aquarium.display();
                     break;
@@ -58,6 +77,7 @@ public class AquariumApp {
                     break;
 
                 case "4":
+                    // Set running to false to exit the loop and end the program
                     running = false;
                     System.out.println("Aquarium closed. Goodbye!");
                     break;
@@ -71,6 +91,7 @@ public class AquariumApp {
             }
         }
 
+        // Close the Scanner to release system resources
         input.close();
     }
 
