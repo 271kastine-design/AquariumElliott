@@ -89,11 +89,14 @@ public class Aquarium {
         try {
             if(i == 1){
                 // Random position 0-29, fixed speed 2, random direction (-1 or 1)
-                creatures.add(new Fish("Fishy", (int)(Math.random() * 30), 2, Math.random() < 0.5 ? -1 : 1, "><>"));
+                creatures.add(new Fish("Fishy", (int)(Math.random() * 30), 2, Math.random() < 0.5 ? -1 : 1));
+                    creatures.add(new Fish( "Fishy", (int)(Math.random() * 30), 2, Math.random() < 0.5 ? -1 : 1));
             } else if(i == 2) {
-                creatures.add(new Shark("Sharky", (int)(Math.random() * 30), 4, Math.random() < 0.5 ? -1 : 1, ">>()[}\'<"));
+                creatures.add(new Shark("Sharky", (int)(Math.random() * 30), 4, Math.random() < 0.5 ? -1 : 1));
+                    creatures.add(new Shark("Sharky", (int)(Math.random() * 30), 4, Math.random() < 0.5 ? -1 : 1));
             } else {
-                creatures.add(new Turtle("Turtley", (int)(Math.random() * 30), 1, (Math.random() < 0.5) ? -1 : 1, "O==[]::::>"));
+                creatures.add(new Turtle("Turtley", (int)(Math.random() * 30), 1, (Math.random() < 0.5) ? -1 : 1));
+                    creatures.add(new Turtle("Turtley", (int)(Math.random() * 30), 1, (Math.random() < 0.5) ? -1 : 1));
             }
             System.out.println();
             System.out.println("Adding a new creature to the aquarium...");

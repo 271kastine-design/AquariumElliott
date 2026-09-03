@@ -11,7 +11,7 @@ public class ReferenceLab {
         // Try-catch is needed because Fish constructor validates parameters and can throw
         // InvalidCreatureException if the creature data is invalid
         try {
-            nemo = new Fish("Nemo", 5, 3, 1, "><>");
+            nemo = new Fish("Nemo", 5, 3, 1);
         } catch (InvalidCreatureException e) {
             System.err.println("Error creating nemo: " + e.getMessage());
         }
@@ -39,8 +39,8 @@ public class ReferenceLab {
         // Even though both Fish objects have identical parameters, they are separate
         // instances created with distinct 'new' calls in different memory locations
         try {
-            fish1 = new Fish("Fish", 10, 2, 1, "><>");
-            fish2 = new Fish("Fish", 10, 2, 1, "><>");
+            fish1 = new Fish("Fish", 10, 2, 1);
+            fish2 = new Fish("Fish", 10, 2, 1);
         } catch (InvalidCreatureException e) {
             System.err.println("Error creating fish: " + e.getMessage());
         }
@@ -62,7 +62,7 @@ public class ReferenceLab {
         // any SeaCreature subtype (Fish, Shark, Turtle, etc.) for polymorphic flexibility
         ArrayList<SeaCreature> tank = new ArrayList<>();
         try {
-            tank.add(new Fish("Bubbles", 8, 1, 1, "><((('>)"));
+            tank.add(new Fish("Bubbles", 8, 1, 1));
         } catch (InvalidCreatureException e) {
             System.err.println("Error creating bubbles: " + e.getMessage());
         }

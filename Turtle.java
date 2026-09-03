@@ -1,10 +1,9 @@
 public class Turtle extends SeaCreature{
-    private String symbol;
+    private static final String SYMBOL = "o=o";
     private int turnNumber;
     
-    public Turtle(String name, int position, int speed, int direction, String symbol) throws InvalidCreatureException {
+    public Turtle(String name, int position, int speed, int direction) throws InvalidCreatureException {
         super(name, position, speed, direction);
-        this.symbol = symbol;
     }
 
     @Override
@@ -19,7 +18,7 @@ public class Turtle extends SeaCreature{
 
     @Override
     public String getSymbol() {
-        return direction >= 0 ? symbol : reverseSymbol(symbol);
+        return direction >= 0 ? SYMBOL : reverseSymbol(SYMBOL);
     }
 
     private String reverseSymbol(String text) {

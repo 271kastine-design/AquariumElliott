@@ -1,48 +1,30 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 public class AquariumApp {
 
     public static void main(String[] args) {
-
         ArrayList<SeaCreature> tank = new ArrayList<>();
 
-        // Add valid starter creatures
-        try {
-            tank.add(new Fish("Nemo", 4, 3, 1, ">>(^>"));
-            tank.add(new Fish("Dory", 30, 2, -1, "><((('>)"));
-            tank.add(new Shark("Jaws", 12, 4, 1, ">>()[}\'<"));
-            tank.add(new Turtle("Leonardo", 20, 1, -1, "O==[]::::>"));
-            // Intentionally invalid: negative speed will fail validation
-            tank.add(new Fish("Broken Fish", 100, -40, 3, ">>(^>"));
-        } catch (InvalidCreatureException e) {
-            System.err.println("Error creating creatures: " + e.getMessage());
+        try (Scanner fileScanner = new Scanner(new File("Fish.txt"))) {
+            while (fileScanner.hasNextLine()) {
+                String line = fileScanner.nextLine().trim();
+                if (line.isEmpty()) {
+                    continue;
+                }
+
+                try {
+                    tank.add(parseCreature(line));
+                } catch (InvalidCreatureException | IllegalArgumentException e) {
+                    System.err.println("Could not parse line: " + line);
+                    System.err.println("Reason: " + e.getMessage());
+                }
+            }
+        } catch (FileNotFoundException e) {
+            System.err.println("Could not open Fish.txt: " + e.getMessage());
         }
-        // Additional invalid test cases in separate try-catch blocks to allow program to continue
-        // even if some creatures fail validation
-        try{
-            // Intentionally invalid: negative speed will fail validation
-            tank.add(new Turtle("Evil Turtle", 30, -64, 1, "O==[]::::>"));
-        } catch (InvalidCreatureException e) {
-            System.err.println("Error creating creatures: " + e.getMessage());
-        }
-        try{
-            // Intentionally invalid: empty name will fail validation
-            tank.add(new Shark("", 21, 8, 1, ">>>[}\'<"));
-        } catch (InvalidCreatureException e) {
-            System.err.println("Error creating creatures: " + e.getMessage());
-        }
-        // ================
-        // =====================================
-        // STUDENT Task
-        // =====================================================
-        // 1. Create at least TWO additional SeaCreature subclasses.
-        // 2. Add objects from those subclasses to this array.
-        // 3. Make their movement behavior meaningfully different.
-        //
-        // Example once you create the class:
-        // tank[2] = new Shark(...);
-        // tank[3] = new Turtle(...);
 
         Aquarium aquarium = new Aquarium(tank);
         // Scanner reads user input from the keyboard
@@ -93,6 +75,31 @@ public class AquariumApp {
 
         // Close the Scanner to release system resources
         input.close();
+    }
+
+    private static SeaCreature parseCreature(String line) throws InvalidCreatureException {
+        String[] fields = line.split(",", 5);
+
+        if (fields.length != 5) {
+            throw new IllegalArgumentException(
+                    "Expected type, name, position, speed, and direction.");
+        }
+
+        String type = fields[0].trim();
+        String name = fields[1].trim();
+        int position = Integer.parseInt(fields[2].trim());
+        int speed = Integer.parseInt(fields[3].trim());
+        int direction = Integer.parseInt(fields[4].trim());
+        switch (type) {
+            case "Fish":
+                return new Fish(name, position, speed, direction);
+            case "Shark":
+                return new Shark(name, position, speed, direction);
+            case "Turtle":
+                return new Turtle(name, position, speed, direction);
+            default:
+                throw new IllegalArgumentException("Unknown creature type: " + type);
+        }
     }
 
     private static void printMenu() {

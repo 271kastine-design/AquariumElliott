@@ -1,9 +1,8 @@
 public class Shark extends SeaCreature{
-    private String symbol;
+    private static final String SYMBOL = ">>()[]}\'<";
     
-    public Shark(String name, int position, int speed, int direction, String symbol) throws InvalidCreatureException {
+    public Shark(String name, int position, int speed, int direction) throws InvalidCreatureException {
         super(name, position, speed, direction);
-        this.symbol = symbol;
     }
 
     @Override
@@ -14,7 +13,7 @@ public class Shark extends SeaCreature{
 
     @Override
     public String getSymbol() {
-        return direction >= 0 ? symbol : reverseSymbol(symbol);
+        return direction >= 0 ? SYMBOL : reverseSymbol(SYMBOL);
     }
 
     private String reverseSymbol(String text) {
