@@ -81,10 +81,8 @@ public class AquariumApp {
         String[] fields = line.split(",", 5);
 
         if (fields.length != 5) {
-            throw new IllegalArgumentException(
-                    "Expected type, name, position, speed, and direction.");
+            throw new IllegalArgumentException("Expected type, name, position, speed, and direction.");
         }
-
         String type = fields[0].trim();
         String name = fields[1].trim();
         int position = Integer.parseInt(fields[2].trim());
