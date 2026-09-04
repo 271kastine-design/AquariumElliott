@@ -86,8 +86,14 @@ public class AquariumApp {
         String type = fields[0].trim();
         String name = fields[1].trim();
         int position = Integer.parseInt(fields[2].trim());
+        if(position < 0 || position > 48) {
+            throw new InvalidCreatureException("Position must be between 0 and 48.");
+        }
         int speed = Integer.parseInt(fields[3].trim());
         int direction = Integer.parseInt(fields[4].trim());
+        if(direction != 1 && direction != -1) {
+            throw new InvalidCreatureException("Direction must be 1 (right) or -1 (left).");
+        }
         switch (type) {
             case "Fish":
                 return new Fish(name, position, speed, direction);

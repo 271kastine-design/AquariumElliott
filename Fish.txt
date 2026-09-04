@@ -2,3 +2,5 @@ Fish, Bill, 4, 3, 1
 Shark, John, 4, 3, 1
 Turtle, Ben, 2, 8, -1
 Shark, Reece, 19, 4, 1
+Shark, Joe, 100, 2, -1
+Fish, Bart, 43, 80, -1
